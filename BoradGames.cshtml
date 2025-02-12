@@ -1,0 +1,58 @@
+@page
+@model BoardGamesModel
+
+
+<h2>Társasjáték Ajánló</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Név</th>
+            <th>Játékosok száma</th>
+            <th>Játékidő (perc)</th>
+            <th>Ajánlott kor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model.BoardGames)
+        {
+            <tr>
+                <td>@game.Id</td>
+                <td>@game.Name</td>
+                <td>@game.Players</td>
+                <td>@game.PlayTime</td>
+                <td>@game.RecommendedAge</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Új társasjáték hozzáadása</h2>
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="NewGame.Name" class="form-label">Név</label>
+        <input asp-for="NewGame.Name" class="form-control">
+        <span asp-validation-for="NewGame.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewGame.Players" class="form-label">Játékosok száma</label>
+        <input asp-for="NewGame.Players" type="number" class="form-control">
+        <span asp-validation-for="NewGame.Players" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewGame.PlayTime" class="form-label">Játékidő (perc)</label>
+        <input asp-for="NewGame.PlayTime" type="number" class="form-control">
+        <span asp-validation-for="NewGame.PlayTime" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewGame.RecommendedAge" class="form-label">Ajánlott kor</label>
+        <input asp-for="NewGame.RecommendedAge" type="number" class="form-control">
+        <span asp-validation-for="NewGame.RecommendedAge" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Hozzáadás</button>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
